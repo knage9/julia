@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/page_2.css">
+</head>
+<body>
+    <div class="telegram-container">
+        <!-- Левая часть с выбором даты -->
+        <div class="sidebar">
+            <div class="sidebar-item" onclick="startChat()">Переписка</div>
+        </div>
+
+        <!-- Правая часть - сама переписка -->
+        <div class="chat">
+            <div class="chat-header">
+                <div class="chat-info">
+                    <div class="avatar"></div>
+                    <div class="chat-name">Переписка с Юлей</div>
+                </div>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <!-- Сообщения будут подгружаться сюда -->
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="user-message" placeholder="Напишите сообщение...">
+                <button onclick="sendMessage()">Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
