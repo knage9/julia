@@ -39,10 +39,22 @@ const images = [
     // Добавьте больше изображений по мере необходимости
 ];
 
+// Прелоад всех изображений для параллельной загрузки
+function preloadImages(images) {
+    return images.map(imageSrc => {
+        const img = new Image();
+        img.src = imageSrc;
+        return img;
+    });
+}
+
+// Прелоад изображений перед запуском слайдера
+preloadImages(images);
+
 document.getElementById('playButton').addEventListener('click', function() {
     var music = document.getElementById('backgroundMusic');
     music.volume = 0.1; // Устанавливаем уровень громкости (от 0.0 до 1.0)
-    music.currentTime = 8; // Устанавливаем таймкод, с которого начнётся песня (30 секунд)
+    music.currentTime = 8; // Устанавливаем таймкод, с которого начнётся песня (8 секунд)
     music.play().catch(function(error) {
         console.error('Ошибка воспроизведения:', error);
     });
@@ -90,7 +102,7 @@ function startImageSlider() {
         slideImage.src = images[currentImageIndex]; // Устанавливаем источник изображения
         currentImageIndex++;
         if (currentImageIndex < images.length) {
-            setTimeout(showNextImage, 200); // Задержка между изображениями
+            setTimeout(showNextImage, 400); // Увеличенная задержка между изображениями для медленного интернета
         } else {
             setTimeout(hideElements, 2000); // Задержка перед переходом на новую страницу
         }
