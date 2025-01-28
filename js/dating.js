@@ -56,13 +56,13 @@ profileCard.addEventListener('click', () => {
 rejectBtn.addEventListener('click', () => {
     profileCard.style.transform = 'translateX(-1000px) rotate(-30deg)';
     setTimeout(() => {
-        window.location.href = 'reject_page.html';
+        window.location.href = 'page_3.html';
     }, 500);
 });
 
 matchBtn.addEventListener('click', () => {
     profileCard.style.transform = 'translateX(1000px) rotate(30deg)';
     setTimeout(() => {
-        window.location.href = 'match_page.html';
+        window.location.href = 'page_3.html';
     }, 500);
 });

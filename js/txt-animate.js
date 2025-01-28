@@ -1,47 +1,93 @@
 const texts = [
-    "Часть 1",
-    "Иногда важные решения приходят неожиданно",
-    "Пару дней назад я задумался о том, как мне приятно проводить время с тобой",
-    "За полгода общения ты стала для меня по-настоящему значимым человеком",
-    "Я делился с тобой всем, что имеет значение в моей жизни",
-    "Я так легко смог тебе довериться — это много значит для меня",
-    "Я написал всё это, чтобы ты знала, как ценю нашу дружбу",
-    "И если хочешь что-то сделать — делай",
-    "Именно поэтому я создал этот сайт за пару дней, вдохновлённый этим",
-    "Мне показалось, что это мило)))",
-    "Часть 2"
+    "Часть 2",
+    "Наша встреча была внезапной,",
+    "Но в тебе я сразу увидел что-то особенное, что никогда не видел раньше",
+    "Я сразу влюбился в твою улыбку,",
+    "И я понял: хочу радовать тебя снова и снова",
+    "Впервые в жизни мне захотелось подарить цветы",
+    "И это были мои первые цветы",
+    "Мы гуляли по Царицыно,",
+    "Но, если честно, я не мог отвести от тебя взгляд",
+    "В голове крутилась лишь одна мысль: как тебе понравиться?",
+    "Вдруг я что-то сделаю не так?",
+    "Мы прекрасно погуляли и поехали в центр",
+    "Всю дорогу я думал, что надо позвать тебя на свидание,",
+    "И сделал это, не сомневаясь в своём решении",
+    "Я чувствовал, что меня тянет к тебе всем сердцем",
+    "Что именно ты — моя судьба"
 ];
+
 
 let currentTextIndex = 0; // Индекс текущего текста
 const textOutput = document.getElementById('textOutput'); // Получаем элемент для вывода текста
-const timerDisplay = document.getElementById('timer'); // Получаем элемент таймера
+const txtContainer = document.querySelector('.txt-container'); // Получаем контейнер для текста
+const slider = document.getElementById('slider'); // Получаем контейнер для слайдера
+const slideImage = document.getElementById('slideImage'); // Получаем элемент изображения в слайдере
+
+// Массив с изображениями для слайдера
+const images = [
+    'first_day/1.jpg',
+    'first_day/2.jpg',
+    'first_day/3.jpg',
+    'first_day/4.jpg',
+    'first_day/5.jpg',
+    'first_day/6.jpg',
+    'first_day/7.jpg',
+    'first_day/8.jpg',
+    'first_day/9.jpg',
+    'first_day/10.jpg',
+    'first_day/11.jpg',
+    'first_day/12.jpg',
+    'first_day/13.jpg',
+    'first_day/14.jpg',
+    'first_day/15.jpg',
+    'first_day/16.jpg',
+    'first_day/17.jpg',
+    'first_day/18.jpg',
+    'first_day/19.jpg',
+    'first_day/20.jpg',
+    'first_day/21.jpg',
+    'first_day/22.jpg',
+    'first_day/23.jpg',
+    'first_day/24.jpg',
+    'first_day/25.jpg',
+    'first_day/26.jpg',
+    'first_day/27.jpg',
+    'first_day/28.jpg',
+    'first_day/29.jpg',
+    'first_day/30.jpg',
+    'first_day/31.jpg',
+    'first_day/32.jpg',
+    'first_day/33.jpg',
+    // Добавьте больше изображений по мере необходимости
+];
+
+// Прелоад всех изображений для параллельной загрузки
+function preloadImages(images) {
+    return images.map(imageSrc => {
+        const img = new Image();
+        img.src = imageSrc;
+        return img;
+    });
+}
+
+// Прелоад изображений перед запуском слайдера
+preloadImages(images);
 
 document.getElementById('playButton').addEventListener('click', function() {
-    timerDisplay.style.display = 'block'; // Показываем таймер
-    let countdown = 5; // Начальное значение таймера
-    const countdownInterval = setInterval(() => {
-        countdown--;
-        timerDisplay.textContent = countdown; // Обновляем таймер
-
-        if (countdown <= 0) {
-            clearInterval(countdownInterval); // Останавливаем таймер
-            timerDisplay.style.display = 'none'; // Скрываем таймер
-            startSlideshow(); // Запускаем слайд-шоу
-        }
-    }, 1000); // Обновляем каждую секунду
-
     var music = document.getElementById('backgroundMusic');
-    music.volume = 0.1; // Устанавливаем уровень громкости (от 0.0 до 1.0)
-    music.currentTime = 0; // Устанавливаем таймкод, с которого начнётся песня (30 секунд)
-
-    // Воспроизводим музыку и обрабатываем возможные ошибки
+    music.volume = 0.2; // Устанавливаем уровень громкости (от 0.0 до 1.0)
+    music.currentTime = 37; // Устанавливаем таймкод, с которого начнётся песня
     music.play().catch(function(error) {
         console.error('Ошибка воспроизведения:', error);
     });
 
     // Скрываем кнопку и показываем контейнер с текстом
-    this.style.display = 'none'; // Скрываем кнопку
-    document.querySelector('.txt-container').style.display = 'block'; // Показываем контейнер с текстом
+    this.style.display = 'none';
+    txtContainer.style.display = 'block';
+
+    // Запускаем анимацию текста с задержкой в 2 секунды
+    setTimeout(startSlideshow, 2000);
 });
 
 function typeText(text, callback) {
@@ -65,9 +111,27 @@ function startSlideshow() {
         if (currentTextIndex < texts.length) {
             setTimeout(startSlideshow, 2000); // Задержка перед следующим текстом
         } else {
-            hideElements(); // Скрываем элементы и переходим на новую страницу
+            setTimeout(startImageSlider, 2000); // Задержка перед началом слайдера
         }
     });
+}
+
+function startImageSlider() {
+    txtContainer.style.display = 'none'; // Скрываем текстовый контейнер
+    slider.style.display = 'flex'; // Показываем слайдер
+    let currentImageIndex = 0; // Индекс текущего изображения
+
+    function showNextImage() {
+        slideImage.src = images[currentImageIndex]; // Устанавливаем источник изображения
+        currentImageIndex++;
+        if (currentImageIndex < images.length) {
+            setTimeout(showNextImage, 300); // Увеличенная задержка между изображениями для медленного интернета
+        } else {
+            setTimeout(hideElements, 2000); // Задержка перед переходом на новую страницу
+        }
+    }
+
+    showNextImage(); // Запускаем показ изображений
 }
 
 function hideElements() {
@@ -83,11 +147,7 @@ function hideElements() {
             music.volume = 0; // Устанавливаем громкость на 0
             clearInterval(fadeOutInterval); // Очищаем интервал
             music.pause(); // Останавливаем музыку
-            
-            // Задержка перед переходом на новую страницу
-            setTimeout(() => {
-                window.location.href = "page_3.html"; // Переход на новую страницу
-            }, 2000); // Задержка в 1 секунду
+            window.location.href = "page_2.html"; // Переход на новую страницу
         }
     }, interval);
 }
