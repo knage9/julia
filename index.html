@@ -11,15 +11,38 @@
 </head>
 <body>
     <div class="container">
-        <button id="playButton">Начать</button>
-        <div class="timer" id="timer" style="display: none;">5</div> <!-- Таймер скрыт по умолчанию -->
-        <div class="txt-container" style="display: none;"> <!-- Контейнер текста скрыт по умолчанию -->
-            <p id="textOutput" class="text-slide"></p>
-        </div>
-    </div> 
-    <audio id="backgroundMusic" loop>
-        <source src="audio/Mélanie-Pain-Redis-moi.m4a" type="audio/mpeg">
-    </audio>
-    <script src="js/txt-animate.js"></script>
+
+
+        <div class="cards">
+          <!-- Первая карточка -->
+          <a href="page_5.html" class="card open heartbeat">
+            <p>Важные воспоминания</p>
+          </a>
+    
+          <!-- Закрытые карточки -->
+          <div class="card-wrapper">
+            <div class="card locked">
+              <p>Сюрприз №1</p>
+            </div>
+            <p class="timer" id="timer-2">Откроется через 00:00:00</p>
+          </div>
+    
+          <div class="card-wrapper">
+            <div class="card locked">
+              <p>Сюрприз №2</p>
+            </div>
+            <p class="timer" id="timer-3">Откроется через 00:00:00</p>
+          </div>
+          
+      </div>
+      
+      <!-- Кнопка музыки -->
+      <button class="music-btn" onclick="toggleMusic()">Мелодия любви</button>
+      
+      <audio id="bg-music" loop>
+        <source src="audio/Brian-Eno-An-Ending-Ascent-Remastered-2019.m4a" type="audio/mp3">
+      </audio>
+      
+      <script src="js/level.js"></script>
 </body>
 </html>
